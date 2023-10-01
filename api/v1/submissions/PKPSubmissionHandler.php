@@ -635,24 +635,24 @@ class PKPSubmissionHandler extends APIHandler
             Repo::submission()->edit($submission, ['submissionProgress' => $params['step']]);
         }
 
-        $emailTemplate = Repo::emailTemplate()->getByKey($context->getId(), SubmissionSavedForLater::getEmailTemplateKey());
-        $mailable = new SubmissionSavedForLater($context, $submission);
-        $mailable
-            ->from($context->getData('contactEmail'), $context->getData('contactName'))
-            ->recipients([$request->getUser()])
-            // The template may not exist, see pkp/pkp-lib#9217
-            ->subject($emailTemplate?->getLocalizedData('subject') ?? __('emails.submissionSavedForLater.subject'))
-            ->body($emailTemplate?->getLocalizedData('body') ?? __('emails.submissionSavedForLater.body'));
+        // $emailTemplate = Repo::emailTemplate()->getByKey($context->getId(), SubmissionSavedForLater::getEmailTemplateKey());
+        // $mailable = new SubmissionSavedForLater($context, $submission);
+        // $mailable
+        //     ->from($context->getData('contactEmail'), $context->getData('contactName'))
+        //     ->recipients([$request->getUser()])
+        //     // The template may not exist, see pkp/pkp-lib#9217
+        //     ->subject($emailTemplate?->getLocalizedData('subject') ?? __('emails.submissionSavedForLater.subject'))
+        //     ->body($emailTemplate?->getLocalizedData('body') ?? __('emails.submissionSavedForLater.body'));
 
-        if (!$emailTemplate) {
-            $templateVariables = $mailable->getData();
-            $mailable->addData([
-                'contextName' => $templateVariables[ContextEmailVariable::CONTEXT_NAME],
-                'contextUrl' => $templateVariables[ContextEmailVariable::CONTEXT_URL],
-            ]);
-        }
+        // if (!$emailTemplate) {
+        //     $templateVariables = $mailable->getData();
+        //     $mailable->addData([
+        //         'contextName' => $templateVariables[ContextEmailVariable::CONTEXT_NAME],
+        //         'contextUrl' => $templateVariables[ContextEmailVariable::CONTEXT_URL],
+        //     ]);
+        // }
 
-        Mail::send($mailable);
+        // Mail::send($mailable);
 
         $submission = Repo::submission()->get($submission->getId());
 
@@ -1033,16 +1033,16 @@ class PKPSubmissionHandler extends APIHandler
                 continue;
             }
 
-            $mailable = new PublicationVersionNotify($context, $submission);
-            $template = Repo::emailTemplate()->getByKey($context->getId(), PublicationVersionNotify::getEmailTemplateKey());
-            $mailable
-                ->from($context->getData('contactEmail'), $context->getData('contactName'))
-                ->recipients([$user])
-                ->body($template->getLocalizedData('body'))
-                ->subject($template->getLocalizedData('subject'))
-                ->allowUnsubscribe($notification);
+            // $mailable = new PublicationVersionNotify($context, $submission);
+            // $template = Repo::emailTemplate()->getByKey($context->getId(), PublicationVersionNotify::getEmailTemplateKey());
+            // $mailable
+            //     ->from($context->getData('contactEmail'), $context->getData('contactName'))
+            //     ->recipients([$user])
+            //     ->body($template->getLocalizedData('body'))
+            //     ->subject($template->getLocalizedData('subject'))
+            //     ->allowUnsubscribe($notification);
 
-            Mail::send($mailable);
+            // Mail::send($mailable);
         }
 
         $userGroups = Repo::userGroup()->getCollector()

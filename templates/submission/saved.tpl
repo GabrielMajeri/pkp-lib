@@ -23,6 +23,8 @@
                 {$submission->getCurrentPublication()->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
             </a>
         </p>
-        <p>{translate key="submission.wizard.saved.emailConfirmation" email=$email|escape}</p>
+        <!--
+            <p>{translate key="submission.wizard.saved.emailConfirmation" email=$email|escape}</p>
+        -->
     </div>
 {/block}

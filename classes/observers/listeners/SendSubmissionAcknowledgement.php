@@ -42,6 +42,9 @@ abstract class SendSubmissionAcknowledgement
 
     public function handle(SubmissionSubmitted $event)
     {
+        // Do not send e-mails to authors after submission is complete
+        return;
+
         /** @var StageAssignmentDAO $stageAssignmentDao */
         $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
         $result = $stageAssignmentDao->getBySubmissionAndRoleIds($event->submission->getId(), [Role::ROLE_ID_AUTHOR]);

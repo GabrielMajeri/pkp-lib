@@ -15,6 +15,7 @@
 
 namespace PKP\components\forms\publication;
 
+use APP\facades\Repo;
 use APP\publication\Publication;
 use PKP\components\forms\FieldRichText;
 use PKP\components\forms\FieldRichTextarea;
@@ -47,6 +48,7 @@ class TitleAbstractForm extends FormComponent
         $this->action = $action;
         $this->locales = $locales;
         $this->publication = $publication;
+        $this->submission = Repo::submission()->get($publication->getData('submissionId'));
         $this->abstractWordLimit = $abstractWordLimit;
         $this->isAbstractRequired = $isAbstractRequired;
 
@@ -67,6 +69,12 @@ class TitleAbstractForm extends FormComponent
                 'label' => __('common.subtitle'),
                 'isMultilingual' => true,
                 'value' => $publication->getData('subtitle'),
+            ]))
+            ->addField(new FieldText('internalId', [
+                'label' => 'Internal identifier',
+                'isMultilingual' => false,
+                'isRequired' => true,
+                'value' => (array) $this->submission->getData('internalId'),
             ]));
             // ->addField(new FieldRichTextarea('abstract', [
             //     'label' => __('common.abstract'),

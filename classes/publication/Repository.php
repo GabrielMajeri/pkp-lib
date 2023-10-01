@@ -390,8 +390,10 @@ abstract class Repository
         $newPublication->stampModified();
 
         // Update the submission object's internal ID field
-        $newInternalId = $params['internalId'];
-        Repo::submission()->edit($submission, ['internalId' => $newInternalId]);
+        if (array_key_exists('internalId', $params)) {
+            $newInternalId = $params['internalId'];
+            Repo::submission()->edit($submission, ['internalId' => $newInternalId]);
+        }
 
         Hook::call('Publication::edit', [&$newPublication, $publication, $params, $this->request]);
 

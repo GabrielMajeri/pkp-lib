@@ -61,6 +61,7 @@ class Schema extends \PKP\core\maps\Schema
             'dateLastActivity',
             'dateSubmitted',
             'id',
+            'internalId',
             'lastModified',
             'publications',
             'reviewAssignments',

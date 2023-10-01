@@ -58,6 +58,9 @@ trait NotifyAuthors
      */
     protected function sendAuthorEmail(Mailable $mailable, EmailData $email, User $editor, Submission $submission, Context $context)
     {
+        // Do not send any e-mails to the authors.
+        return;
+
         $recipients = array_map(function ($userId) {
             return Repo::user()->get($userId);
         }, $this->getAssignedAuthorIds($submission));

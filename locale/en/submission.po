@@ -1489,7 +1489,7 @@ msgid "editor.submission.decision.sendExternalReview.completed"
 msgstr "Sent for Review"
 
 msgid "editor.submission.decision.sendExternalReview.completed.description"
-msgstr "The submission, {$title}, has been sent to the review stage. The author has been notified, unless you chose to skip that email."
+msgstr "The submission, {$title}, has been sent to the review stage."
 
 msgid "editor.submission.decision.newRound"
 msgstr "New review round"

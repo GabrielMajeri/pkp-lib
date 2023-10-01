@@ -45,6 +45,9 @@ abstract class SendSubmissionAcknowledgement
         if (!$event->context->getData('submissionAcknowledgement')) {
             return;
         }
+        
+        // Do not send e-mails to authors after submission is complete
+        return;
 
         /** @var StageAssignmentDAO $stageAssignmentDao */
         $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');

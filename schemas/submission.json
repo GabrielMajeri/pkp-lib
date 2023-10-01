@@ -54,6 +54,11 @@
 			"readOnly": true,
 			"apiSummary": true
 		},
+		"internalId": {
+			"type": "string",
+			"description": "Internally-used identifier for this submission.",
+			"apiSummary": true
+		},
 		"lastModified": {
 			"type": "string",
 			"description": "The last time a modification was made to this submission or any of its associated objects.",

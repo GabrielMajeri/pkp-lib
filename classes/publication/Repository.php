@@ -389,6 +389,10 @@ abstract class Repository
         $newPublication = Repo::publication()->newDataObject(array_merge($publication->_data, $params));
         $newPublication->stampModified();
 
+        // Update the submission object's internal ID field
+        $newInternalId = $params['internalId'];
+        Repo::submission()->edit($submission, ['internalId' => $newInternalId]);
+
         Hook::call('Publication::edit', [&$newPublication, $publication, $params, $this->request]);
 
         $this->dao->update($newPublication, $publication);

@@ -20,6 +20,7 @@ use Illuminate\Support\Enumerable;
 use PKP\components\forms\FieldHTML;
 use PKP\components\forms\FieldOptions;
 use PKP\components\forms\FieldRichText;
+use PKP\components\forms\FieldText;
 use PKP\components\forms\FormComponent;
 use PKP\config\Config;
 use PKP\context\Context;
@@ -48,6 +49,7 @@ class StartSubmission extends FormComponent
         // $this->addIntroduction($context);
         $this->addLanguage($context);
         $this->addTitle();
+        $this->addInternalId();
         // $this->addSubmissionChecklist($context);
         $this->addUserGroups($userGroups);
         // $this->addPrivacyConsent($context);
@@ -85,6 +87,17 @@ class StartSubmission extends FormComponent
             'size' => 'oneline',
             'isRequired' => true,
             'value' => '',
+        ]));
+    }
+
+    protected function addInternalId(): void
+    {
+        $this->addField(new FieldText('internalId', [
+            'label' => 'Internal identifier',
+            'description' => 'Custom identification number for this submission.',
+            'isRequired' => true,
+            'value' => '',
+            'isMultilingual' => false,
         ]));
     }
 

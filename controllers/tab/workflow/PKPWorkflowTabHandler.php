@@ -90,6 +90,16 @@ abstract class PKPWorkflowTabHandler extends Handler
                 // Retrieve the authorized submission and stage id.
                 $selectedStageId = $this->getAuthorizedContextObject(Application::ASSOC_TYPE_WORKFLOW_STAGE);
 
+                // Only allow assigned editors to view review data.
+                $currentUserId = $request->getUser()->getId();
+                $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO');
+                $editorsAssignedToStage = $stageAssignmentDao->getEditorsAssignedToStage($submission->getId(), $selectedStageId);
+                $filteredAssignments = array_filter($editorsAssignedToStage, function ($assignment) use ($currentUserId) {
+                    return $assignment->getUserId() == $currentUserId;
+                });
+                $isUserAssignedToSubmission = !empty($filteredAssignments);
+                $templateMgr->assign('isUserAssignedToSubmission', $isUserAssignedToSubmission);
+
                 // Get all review rounds for this submission, on the current stage.
                 $reviewRoundDao = DAORegistry::getDAO('ReviewRoundDAO'); /** @var ReviewRoundDAO $reviewRoundDao */
                 $reviewRoundsFactory = $reviewRoundDao->getBySubmissionId($submission->getId(), $selectedStageId);

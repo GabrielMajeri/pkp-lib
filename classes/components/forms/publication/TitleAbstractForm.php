@@ -67,14 +67,14 @@ class TitleAbstractForm extends FormComponent
                 'label' => __('common.subtitle'),
                 'isMultilingual' => true,
                 'value' => $publication->getData('subtitle'),
-            ]))
-            ->addField(new FieldRichTextarea('abstract', [
-                'label' => __('common.abstract'),
-                'isMultilingual' => true,
-                'isRequired' => $this->isAbstractRequired,
-                'size' => 'large',
-                'wordLimit' => $this->abstractWordLimit,
-                'value' => $publication->getData('abstract'),
             ]));
+            // ->addField(new FieldRichTextarea('abstract', [
+            //     'label' => __('common.abstract'),
+            //     'isMultilingual' => true,
+            //     'isRequired' => $this->isAbstractRequired,
+            //     'size' => 'large',
+            //     'wordLimit' => $this->abstractWordLimit,
+            //     'value' => $publication->getData('abstract'),
+            // ]));
     }
 }

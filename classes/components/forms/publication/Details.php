@@ -41,16 +41,16 @@ class Details extends TitleAbstractForm
         $this->removeField('prefix');
         $this->removeField('subtitle');
 
-        if (in_array($context->getData('keywords'), [Context::METADATA_REQUEST, Context::METADATA_REQUIRE])) {
-            $this->addField(new FieldControlledVocab('keywords', [
-                'label' => __('common.keywords'),
-                'description' => __('manager.setup.metadata.keywords.description'),
-                'isMultilingual' => true,
-                'apiUrl' => str_replace('__vocab__', SubmissionKeywordDAO::CONTROLLED_VOCAB_SUBMISSION_KEYWORD, $suggestionUrlBase),
-                'locales' => $this->locales,
-                'value' => (array) $publication->getData('keywords'),
-                'isRequired' => $context->getData('keywords') === Context::METADATA_REQUIRE ? true : false,
-            ]), [FIELD_POSITION_AFTER, 'title']);
-        }
+        // if (in_array($context->getData('keywords'), [Context::METADATA_REQUEST, Context::METADATA_REQUIRE])) {
+        //     $this->addField(new FieldControlledVocab('keywords', [
+        //         'label' => __('common.keywords'),
+        //         'description' => __('manager.setup.metadata.keywords.description'),
+        //         'isMultilingual' => true,
+        //         'apiUrl' => str_replace('__vocab__', SubmissionKeywordDAO::CONTROLLED_VOCAB_SUBMISSION_KEYWORD, $suggestionUrlBase),
+        //         'locales' => $this->locales,
+        //         'value' => (array) $publication->getData('keywords'),
+        //         'isRequired' => $context->getData('keywords') === Context::METADATA_REQUIRE ? true : false,
+        //     ]), [FIELD_POSITION_AFTER, 'title']);
+        // }
     }
 }

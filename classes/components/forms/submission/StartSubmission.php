@@ -45,12 +45,12 @@ class StartSubmission extends FormComponent
         $this->context = $context;
         $this->userGroups = $userGroups;
 
-        $this->addIntroduction($context);
+        // $this->addIntroduction($context);
         $this->addLanguage($context);
         $this->addTitle();
-        $this->addSubmissionChecklist($context);
+        // $this->addSubmissionChecklist($context);
         $this->addUserGroups($userGroups);
-        $this->addPrivacyConsent($context);
+        // $this->addPrivacyConsent($context);
     }
 
     /**
